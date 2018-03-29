@@ -1,6 +1,9 @@
 @extends('layouts/template')
 @section('content')
 
+<div class="banner banner-in">
+</div>
+
 <br>
 <br>
 <br>
@@ -14,7 +17,7 @@
     </ul>
   </div>
 @endif
-<form action="{{ route('category.store') }}" method="post">
+<form action="{{ route('store') }}" method="post">
 {{ csrf_field() }}
 <p>Введите название категории: <textarea rows="3" cols="45" wrap="soft" name="category" required></textarea></p>
 <p><input type="submit"></p>

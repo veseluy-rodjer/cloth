@@ -27,20 +27,24 @@
 					</div>
 				<a  href="single.html" class="product-in hvr-shutter-in-horizontal">see all products</a>
 				<div class="clearfix"> </div>
+				<p style="text-align:right; font-weight:700"><br><a href="{{ route('create') }}" >Добавить категорию</a></p>
 				</div>
 			</div>
 		</div>
 		<!---->
 		<div class="container">
+		
+@foreach($listing as $i)		
 			<div class="content-grid">
-				<h3 class="future">MEN</h3>
+				<h3 class="future">{{ $i->category }}</h3>
 					<p class="five">1/5</p>
 					<div class="clearfix"> </div>
-				<ul id="flexiselDemo1">			
+				<ul id="flexiselDemo1">
+    @foreach($i->clothes as $y)		
 						<li><div class="men-grid">
-					<a href="single.html"><img class="img-responsive" src="{{ asset('images/me.png') }}" alt=""></a>
+					<a href="single.html"><img class="img-responsive" src="{{ asset($y->picture) }}" alt=""></a>
 						<div class="value-in">
-							<p>T-Shirt</p>
+							<p>{{ $y->name }}</p>
 							<span>5,00€</span>
 							<div class="clearfix"> </div>
 						</div>
@@ -54,41 +58,8 @@
 							 </select>
 					 </div>	
 						</div></li>
-						<li><div class="men-grid">
-						<a href="single.html"><img class="img-responsive" src="{{ asset('images/me1.png') }}" alt=""></a>
-						<div class="value-in">
-							<p>Pants FORCLAZ</p>
-							<span>25,00€</span>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="down-top ">
-						
-							 <select  class="drop-down">
-								<option value="" class="size" value="">SIZE</option>
-								<option value="1">Large</option>
-								<option value="2">Medium</option>
-								<option value="3">Small</option>
-							 </select>
-					 </div>	
-						</div></li>
-						<li><div class="men-grid">
-					<a href="single.html"><img class="img-responsive" src="{{ asset('images/me2.png') }}" alt=""></a>
-						<div class="value-in">
-							<p>backpack</p>
-							<span>18,00€</span>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="down-top ">
-						
-							 <select  class="drop-down">
-								<option value="" class="size" value="">SIZE</option>
-								<option value="1">Large</option>
-								<option value="2">Medium</option>
-								<option value="3">Small</option>
-							 </select>
-					 </div>	
-						</div></li>
-						
+    @endforeach						
+
 					
 					</ul>
             		<script type="text/javascript">
@@ -120,94 +91,8 @@
 	</script>
 	<script type="text/javascript" src="{{ asset('js/jquery.flexisel.js') }}"></script>
 			</div>
-			<div class="content-grid">
-				<h3 class="future-in">WOMEN</h3>
-					<p class="five">1/5</p>
-					<div class="clearfix"> </div>
-				<ul id="flexiselDemo2">			
-						<li><div class="men-grid">
-					<a href="single.html"><img class="img-responsive" src="{{ asset('images/me3.png') }}" alt=""></a>
-						<div class="value-in">
-							<p>Giacket</p>
-							<span>15,00€</span>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="down-top ">
-						
-							 <select  class="drop-down">
-								<option value="" class="size" value="">SIZE</option>
-								<option value="1">Large</option>
-								<option value="2">Medium</option>
-								<option value="3">Small</option>
-							 </select>
-					 </div>	
-						</div></li>
-						<li><div class="men-grid">
-					<a href="single.html"><img class="img-responsive" src="{{ asset('images/me4.png') }}" alt=""></a>
-						<div class="value-in">
-							<p>trekking shoes</p>
-							<span>20,00€</span>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="down-top ">
-						
-							 <select  class="drop-down">
-								<option value="" class="size" value="">SIZE</option>
-								<option value="1">Large</option>
-								<option value="2">Medium</option>
-								<option value="3">Small</option>
-							 </select>
-					 </div>	
-						</div></li>
-						<li><div class="men-grid">
-					<a href="single.html"><img class="img-responsive" src="{{ asset('images/me5.png') }}" alt=""></a>
-						<div class="value-in">
-							<p>T-Shirt</p>
-							<span>10,00€</span>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="down-top ">
-						
-							 <select  class="drop-down">
-								<option value="" class="size" value="">SIZE</option>
-								<option value="1">Large</option>
-								<option value="2">Medium</option>
-								<option value="3">Small</option>
-							 </select>
-					 </div>	
-						</div></li>
-						
-					
-					</ul>
-            		<script type="text/javascript">
-		$(window).load(function() {
-			$("#flexiselDemo2").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,    		
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-		    	responsiveBreakpoints: { 
-		    		portrait: { 
-		    			changePoint:480,
-		    			visibleItems: 1
-		    		}, 
-		    		landscape: { 
-		    			changePoint:640,
-		    			visibleItems: 2
-		    		},
-		    		tablet: { 
-		    			changePoint:768,
-		    			visibleItems: 2
-		    		}
-		    	}
-		    });
-		    
-		});
-	</script>
-	<script type="text/javascript" src="{{ asset('js/jquery.flexisel.js') }}"></script>
-			</div>
+@endforeach
+
 		</div>
 		<!---->
 		<div class="about-us">

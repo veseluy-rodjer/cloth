@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Http\Requests\StoreCategory;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $listing = Category::listing();
-        $date = ['title' => 'Главная', 'listing' => $listing];
-        return view('main', $date);
+        $date = ['title' => 'Продуция'];
+        return view('product', $date);
     }
 
     /**
@@ -27,9 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $date = ['title' => 'Добавление категории'];
-        return view('category/create', $date);
-
+        //
     }
 
     /**
@@ -38,10 +33,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategory $request)
+    public function store(Request $request)
     {
-        Category::store($request->category);
-        return redirect()->route('index');
+        //
     }
 
     /**

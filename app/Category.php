@@ -10,7 +10,7 @@ class Category extends Model
 
     public function scopeListing($quest)
     {
-        return Category::orderBy('id', 'desc')->get();
+        return Category::all();
     }
 
     public function scopeStore($quest, $category)
@@ -62,5 +62,10 @@ class Category extends Model
         $delPicture->picture = null;
         $delPicture->save();
         }
+    }
+    
+    public function clothes()
+    {
+        return $this->hasMany('App\Cloth');
     }
 }

@@ -66,4 +66,9 @@ class Cloth extends Model
         $delPicture->save();
         }
     }
+    
+    public function categories()
+    {
+        return $this->belongsTo('App\Category');
+    }    
 }
