@@ -36,7 +36,7 @@
 		
 @foreach($listing as $i)		
 			<div class="content-grid">
-				<h3 class="future">{{ $i->category }}</h3>
+				<h3 class="future">{{ $i->category }}<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;Добавить</a></h3>
 					<p class="five">1/5</p>
 					<div class="clearfix"> </div>
 				<ul id="flexiselDemo1">

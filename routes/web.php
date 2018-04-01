@@ -11,6 +11,12 @@
 |
 */
 
+Route::get('/cloth/create/{cloth}', 'ClothController@create')->name('cloth.create');
+
+Route::post('/cloth/store/{cloth}', 'ClothController@store')->name('cloth.store');
+
+Route::resource('/cloth', 'ClothController')->except('create', 'store');
+
 Route::resource('/product', 'ProductController');
 
 Auth::routes();

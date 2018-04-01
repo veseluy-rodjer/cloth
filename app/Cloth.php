@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use App\Category;
 
 class Cloth extends Model
 {
@@ -11,26 +12,32 @@ class Cloth extends Model
 
     public function scopeListing($quest)
     {
-        return MainModel::orderBy('id', 'desc')->get();
+        //
     }
 
-    public function scopeStore($quest, $picture, $title, $news)
+    public function scopeCr($quest, $id)
     {
-        $add = new MainModel;
+        return Category::find($id)->id;
+    }
+
+    public function scopeStore($quest, $id, $picture, $name, $description)
+    {
+        $category = Category::find($id);
+        $add = new Cloth;
         $add->picture = $picture;
-        $add->title = $title;
-        $add->news = $news;
-        $add->save();
+        $add->name = $name;
+        $add->description = $description;
+        $category->clothes()->save($add);
     }
     
     public function scopeEdit($quest, $id)
     {
-        return MainModel::find($id);
+        return Cloth::find($id);
     }        
 
     public function scopeUp($quest, $id, $picture, $title, $news)
     {
-        $up = MainModel::find($id);
+        $up = Cloth::find($id);
         if (!empty($picture)) {
             if ($up->picture != null) {
                 $path = array_slice(explode('/', $up->picture), 4);
@@ -46,7 +53,7 @@ class Cloth extends Model
 
     public function scopeDestr($quest, $id)
     {
-        $destroy = MainModel::find($id);
+        $destroy = Cloth::find($id);
         if (!empty($destroy->picture)) {
             $path = array_slice(explode('/', $destroy->picture), 4);
             $path = implode('/', $path);
@@ -57,7 +64,7 @@ class Cloth extends Model
 
     public function scopeDelPicture($quest, $id)
     {
-        $delPicture = MainModel::find($id);
+        $delPicture = Cloth::find($id);
         if (!empty($delPicture->picture)) {
             $path = array_slice(explode('/', $delPicture->picture), 4);
             $path = implode('/', $path);

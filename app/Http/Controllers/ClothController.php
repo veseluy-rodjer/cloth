@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cloth;
+use App\Http\Requests\StoreCloth;
+use Illuminate\Support\Facades\Storage;
 
 class ClothController extends Controller
 {
@@ -13,8 +16,7 @@ class ClothController extends Controller
      */
     public function index()
     {
-        $date = ['title' => 'Главная'];
-        return view('main', $date);
+        //
     }
 
     /**
@@ -22,9 +24,11 @@ class ClothController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $id = Cloth::cr($id);
+        $date = ['title' => 'Добавление одежды', 'id' => $id];
+        return view('cloth/create', $date);
     }
 
     /**
@@ -33,9 +37,14 @@ class ClothController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCloth $request, $id)
     {
-        //
+        $picture = null;
+        if (!empty($request->picture)) {
+            $picture = Storage::disk('public')->$request->picture->store('picture/cloth', 'public');
+        }
+        Cloth::store($id, $picture, $request->name, $request->description);
+        return redirect()->route('index'); 
     }
 
     /**
