@@ -63,7 +63,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = Category::edit($id);
+        $date = ['title' => 'Переименование категории', 'edit' => $edit];
+        return view('category/edit', $date);
     }
 
     /**

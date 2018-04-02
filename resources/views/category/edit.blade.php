@@ -1,6 +1,9 @@
 @extends('layouts/template')
 @section('content')
 
+<div class="banner banner-in">
+</div>
+
 <br>
 <br>
 <br>
@@ -14,19 +17,9 @@
     </ul>
   </div>
 @endif
-<img src={{ $edit->picture }} width="30%" alt="">
-<form action="{{  route('mainDelPicture', [$edit->id])  }}" method="post">
+<form action="{{ route('update', [$edit->id]) }}" method="post">
 {{ csrf_field() }}
-{{ method_field('DELETE') }}
-<p><input type="submit" value="Удалить фото"></p>
-</form>
-<form enctype="multipart/form-data" action="{{ route('update', [$edit->id]) }}" method="post">
-{{ csrf_field() }}
-{{ method_field('PATCH') }}
-<p><input type="hidden" name="MAX_FILE_SIZE" value="9024000"></p>
-<p>Загрузить фото: <input name="picture" type="file" accept="image/*"></p>
-<p>ФИО: <textarea rows="3" cols="45" wrap="soft" name="title" required>{{ $edit->title }}</textarea></p>
-<p>Должность: <textarea rows="10" cols="45" wrap="soft" name="news" required>{{ $edit->news }}</textarea></p>
+<p>Введите название категории: <textarea rows="3" cols="45" wrap="soft" name="category" required>{{ $edit->category }}</textarea></p>
 <p><input type="submit"></p>
 </form>
 

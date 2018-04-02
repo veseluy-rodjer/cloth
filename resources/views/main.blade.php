@@ -36,60 +36,30 @@
 		
 @foreach($listing as $i)		
 			<div class="content-grid">
-				<h3 class="future">{{ $i->category }}<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;Добавить</a></h3>
-					<p class="five">1/5</p>
-					<div class="clearfix"> </div>
-				<ul id="flexiselDemo1">
-    @foreach($i->clothes as $y)		
-						<li><div class="men-grid">
-					<a href="single.html"><img class="img-responsive" src="{{ asset($y->picture) }}" alt=""></a>
-						<div class="value-in">
-							<p>{{ $y->name }}</p>
-							<span>5,00€</span>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="down-top ">
-						
-							 <select  class="drop-down">
-								<option value="" class="size" value="">SIZE</option>
-								<option value="1">Large</option>
-								<option value="2">Medium</option>
-								<option value="3">Small</option>
-							 </select>
-					 </div>	
-						</div></li>
-    @endforeach						
+				<h3 class="future">{{ $i->category }}<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;Добавить</a><a href="{{ route('edit', [$i->id]) }}" >&#160;Переименовать категорию</a>
+<form action="{{ route('destroy', [$i->id]) }}" method="post">
+{{ csrf_field() }}
+{{ method_field('DELETE') }}
+<p><input type="submit" value="Удалить категорию"></p>
+</form>				
+				</h3>
 
-					
-					</ul>
-            		<script type="text/javascript">
-		$(window).load(function() {
-			$("#flexiselDemo1").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,    		
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-		    	responsiveBreakpoints: { 
-		    		portrait: { 
-		    			changePoint:480,
-		    			visibleItems: 1
-		    		}, 
-		    		landscape: { 
-		    			changePoint:640,
-		    			visibleItems: 2
-		    		},
-		    		tablet: { 
-		    			changePoint:768,
-		    			visibleItems: 2
-		    		}
-		    	}
-		    });
-		    
-		});
-	</script>
-	<script type="text/javascript" src="{{ asset('js/jquery.flexisel.js') }}"></script>
+    @foreach($i->clothes as $y)
+    
+      <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <img src="{{ asset($y->picture) }}" class="img-responsive" />
+        <h3>{{ $y->name }}</h3>
+        <p>{{ $y->description }} </p>
+{{-- @can('before', App\Models\MainModel::class) --}}        
+        <a href="{{ route('edit', [$i->id]) }}"><input type="submit" value="Редактировать"></a>
+<form action="{{ route('destroy', [$i->id]) }}" method="post">
+{{ csrf_field() }}
+{{ method_field('DELETE') }}
+<p><input type="submit" value="Удалить"></p>
+</form>
+{{-- @endcan --}}        
+      </div>
+    @endforeach
 			</div>
 @endforeach
 

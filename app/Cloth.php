@@ -15,11 +15,6 @@ class Cloth extends Model
         //
     }
 
-    public function scopeCr($quest, $id)
-    {
-        return Category::find($id)->id;
-    }
-
     public function scopeStore($quest, $id, $picture, $name, $description)
     {
         $category = Category::find($id);

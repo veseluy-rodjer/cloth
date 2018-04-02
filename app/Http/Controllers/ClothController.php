@@ -26,7 +26,6 @@ class ClothController extends Controller
      */
     public function create($id)
     {
-        $id = Cloth::cr($id);
         $date = ['title' => 'Добавление одежды', 'id' => $id];
         return view('cloth/create', $date);
     }
@@ -41,7 +40,7 @@ class ClothController extends Controller
     {
         $picture = null;
         if (!empty($request->picture)) {
-            $picture = Storage::disk('public')->$request->picture->store('picture/cloth', 'public');
+            $picture = $request->picture->store('picture/cloth', 'public');
         }
         Cloth::store($id, $picture, $request->name, $request->description);
         return redirect()->route('index'); 
