@@ -19,7 +19,8 @@ class CreateClothesTable extends Migration
             $table->char('picture', 255)->nullable();
             $table->char('name', 255);
             $table->char('description', 255);
-            $table->integer('category_id');
+            $table->float('price', 8, 2);
+            $table->integer('category_id');            
         });
     }
 

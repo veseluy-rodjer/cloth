@@ -23,6 +23,7 @@
 <p>Загрузить фото: <input name="picture" type="file" accept="image/*"></p>
 <p>Наименование: <textarea rows="3" cols="45" wrap="soft" name="name" required></textarea></p>
 <p>Описание: <textarea rows="10" cols="45" wrap="soft" name="description" required></textarea></p>
+<p>Цена: <input type="number" name="price" min="0" step="0.01"></p>
 <p><input type="submit"></p>
 </form>
 

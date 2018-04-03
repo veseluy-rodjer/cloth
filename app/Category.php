@@ -10,7 +10,7 @@ class Category extends Model
 
     public function scopeListing($quest)
     {
-        return Category::all();
+        return $quest->get();
     }
 
     public function scopeStore($quest, $category)
@@ -22,28 +22,19 @@ class Category extends Model
     
     public function scopeEdit($quest, $id)
     {
-        return Category::find($id);
+        return $quest->find($id);
     }        
 
-    public function scopeUp($quest, $id, $picture, $title, $news)
+    public function scopeUp($quest, $category, $id)
     {
-        $up = Category::find($id);
-        if (!empty($picture)) {
-            if ($up->picture != null) {
-                $path = array_slice(explode('/', $up->picture), 4);
-                $path = implode('/', $path);
-                Storage::disk('public')->delete($path);
-            }
-            $up->picture = $picture;
-        }
-        $up->title = $title;
-        $up->news = $news;
+        $up = $quest->find($id);
+        $up->category = $category;
         $up->save();        
     }    
 
     public function scopeDestr($quest, $id)
     {
-        $destroy = Category::find($id);
+        $destroy = $quest->find($id);
         if (!empty($destroy->picture)) {
             $path = array_slice(explode('/', $destroy->picture), 4);
             $path = implode('/', $path);
@@ -54,7 +45,7 @@ class Category extends Model
 
     public function scopeDelPicture($quest, $id)
     {
-        $delPicture = Category::find($id);
+        $delPicture = $quest->find($id);
         if (!empty($delPicture->picture)) {
             $path = array_slice(explode('/', $delPicture->picture), 4);
             $path = implode('/', $path);

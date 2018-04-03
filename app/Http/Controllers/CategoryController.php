@@ -77,7 +77,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Category::up($request->category, $id);
+        return redirect()->route('index');
     }
 
     /**

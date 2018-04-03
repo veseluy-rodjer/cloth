@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cloth;
 use App\Http\Requests\StoreCloth;
-use Illuminate\Support\Facades\Storage;
 
 class ClothController extends Controller
 {
@@ -42,7 +41,7 @@ class ClothController extends Controller
         if (!empty($request->picture)) {
             $picture = $request->picture->store('picture/cloth', 'public');
         }
-        Cloth::store($id, $picture, $request->name, $request->description);
+        Cloth::store($id, $picture, $request->name, $request->description, $request->price);
         return redirect()->route('index'); 
     }
 
