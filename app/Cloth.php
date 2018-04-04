@@ -28,12 +28,12 @@ class Cloth extends Model
     
     public function scopeEdit($quest, $id)
     {
-        return $quest->find($id);
+        return Cloth::find($id);
     }        
 
     public function scopeUp($quest, $id, $picture, $title, $news)
     {
-        $up = $quest->find($id);
+        $up = Cloth::find($id);
         if (!empty($picture)) {
             if ($up->picture != null) {
                 $path = array_slice(explode('/', $up->picture), 4);
@@ -49,7 +49,7 @@ class Cloth extends Model
 
     public function scopeDestr($quest, $id)
     {
-        $destroy = $quest->find($id);
+        $destroy = Cloth::find($id);
         if (!empty($destroy->picture)) {
             $path = array_slice(explode('/', $destroy->picture), 4);
             $path = implode('/', $path);
@@ -60,7 +60,7 @@ class Cloth extends Model
 
     public function scopeDelPicture($quest, $id)
     {
-        $delPicture = $quest->find($id);
+        $delPicture = Cloth::find($id);
         if (!empty($delPicture->picture)) {
             $path = array_slice(explode('/', $delPicture->picture), 4);
             $path = implode('/', $path);

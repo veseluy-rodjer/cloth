@@ -24,3 +24,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/', 'CategoryController', ['parameters' => ['' => 'category']]);
+
+Route::get('/{category}', 'CategoryController@indexCategory')->name('indexCategory');

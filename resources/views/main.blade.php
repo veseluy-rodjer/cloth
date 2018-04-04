@@ -14,18 +14,23 @@
 				<div class="container">
 					<div class="content-top-at">
 					<div class="content-top-grid">
-						<a class="news-letter" href="#">
-							<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>MEN</label>
-						</a>
-						<a class="news-letter" href="#">
-							<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>WOMEN</label>
-						</a>
-						<a class="news-letter" href="#">
-							<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>CHILDERN</label>
-						</a>
+					<h3>
+					
+@foreach($listing as $i)
+                        <br>
+						<a href="{{ route('indexCategory', [$i->id]) }}">{{ $i->category }}</a>
+						<a href="{{ route('edit', [$i->id]) }}" >&#160;Переименовать категорию</a>
+						<form action="{{ route('destroy', [$i->id]) }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <p><input type="submit" value="Удалить категорию"></p>
+                        </form>
+@endforeach
+                    </h3>
+
 					<div class="clearfix"> </div>
 					</div>
-				<a  href="single.html" class="product-in hvr-shutter-in-horizontal">see all products</a>
+				<a  href="{{ route('index') }}" class="product-in hvr-shutter-in-horizontal">Все категории</a>
 				<div class="clearfix"> </div>
 				<p style="text-align:right; font-weight:700"><br><a href="{{ route('create') }}" >Добавить категорию</a></p>
 				</div>
@@ -36,12 +41,8 @@
 		
 @foreach($listing as $i)		
 			<div class="content-grid">
-				<h3 class="future">{{ $i->category }}<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;Добавить</a><a href="{{ route('edit', [$i->id]) }}" >&#160;Переименовать категорию</a>
-<form action="{{ route('destroy', [$i->id]) }}" method="post">
-{{ csrf_field() }}
-{{ method_field('DELETE') }}
-<p><input type="submit" value="Удалить категорию"></p>
-</form>				
+				<h3 class="future">{{ $i->category }}<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;Добавить</a>
+				
 				</h3>
 
     @foreach($i->clothes as $y)

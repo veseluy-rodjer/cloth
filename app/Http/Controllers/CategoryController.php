@@ -15,7 +15,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $listing = Category::listing();
+        $id=null;
+        $listing = Category::listing($id);
+        $date = ['title' => 'Главная', 'listing' => $listing];
+        return view('main', $date);
+    }
+    
+    public function indexCategory($id)
+    {
+        $listing = Category::listing($id);
         $date = ['title' => 'Главная', 'listing' => $listing];
         return view('main', $date);
     }
@@ -89,6 +97,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::destr($id);
+        return redirect()->route('index');
     }
 }

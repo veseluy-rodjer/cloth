@@ -8,9 +8,14 @@ class Category extends Model
 {
     protected $table = 'categories';
 
-    public function scopeListing($quest)
+    public function scopeListing($quest, $id)
     {
-        return $quest->get();
+        if ($id == null) {
+            return Category::get();
+        }
+        else {
+            return Category::find([$id]);
+        }
     }
 
     public function scopeStore($quest, $category)
@@ -22,30 +27,24 @@ class Category extends Model
     
     public function scopeEdit($quest, $id)
     {
-        return $quest->find($id);
+        return Category::find($id);
     }        
 
     public function scopeUp($quest, $category, $id)
     {
-        $up = $quest->find($id);
+        $up = Category::find($id);
         $up->category = $category;
         $up->save();        
     }    
 
     public function scopeDestr($quest, $id)
     {
-        $destroy = $quest->find($id);
-        if (!empty($destroy->picture)) {
-            $path = array_slice(explode('/', $destroy->picture), 4);
-            $path = implode('/', $path);
-            Storage::disk('public')->delete($path);
-         }
-         $destroy->delete();         
+        Category::destroy($id);
     }
 
     public function scopeDelPicture($quest, $id)
     {
-        $delPicture = $quest->find($id);
+        $delPicture = Category::find($id);
         if (!empty($delPicture->picture)) {
             $path = array_slice(explode('/', $delPicture->picture), 4);
             $path = implode('/', $path);
