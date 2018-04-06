@@ -39,6 +39,7 @@ class Category extends Model
 
     public function scopeDestr($quest, $id)
     {
+        Category::find($id)->clothes()->delete();
         Category::destroy($id);
     }
 

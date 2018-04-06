@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class SingleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $date = ['title' => 'Продуция'];
-        return view('product', $date);
+        //
     }
 
     /**

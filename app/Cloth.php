@@ -31,19 +31,18 @@ class Cloth extends Model
         return Cloth::find($id);
     }        
 
-    public function scopeUp($quest, $id, $picture, $title, $news)
+    public function scopeUp($quest, $id, $picture, $request)
     {
         $up = Cloth::find($id);
         if (!empty($picture)) {
-            if ($up->picture != null) {
-                $path = array_slice(explode('/', $up->picture), 4);
-                $path = implode('/', $path);
-                Storage::disk('public')->delete($path);
+            if (!empty($up->picture)) {
+                Storage::disk('public')->delete($up->picture);
             }
             $up->picture = $picture;
         }
-        $up->title = $title;
-        $up->news = $news;
+        $up->name = $request->name;
+        $up->description = $request->description;
+        $up->price = $request->price;        
         $up->save();        
     }    
 
@@ -51,20 +50,16 @@ class Cloth extends Model
     {
         $destroy = Cloth::find($id);
         if (!empty($destroy->picture)) {
-            $path = array_slice(explode('/', $destroy->picture), 4);
-            $path = implode('/', $path);
-            Storage::disk('public')->delete($path);
-         }
-         $destroy->delete();         
+            Storage::disk('public')->delete($destroy->picture);
+        }
+        $destroy->delete();      
     }
 
     public function scopeDelPicture($quest, $id)
     {
         $delPicture = Cloth::find($id);
         if (!empty($delPicture->picture)) {
-            $path = array_slice(explode('/', $delPicture->picture), 4);
-            $path = implode('/', $path);
-            Storage::disk('public')->delete($path);
+            Storage::disk('public')->delete($delPicture->picture);
         $delPicture->picture = null;
         $delPicture->save();
         }

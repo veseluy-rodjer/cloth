@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cloth;
+use App\Category;
 use App\Http\Requests\StoreCloth;
 
 class ClothController extends Controller
@@ -64,7 +65,9 @@ class ClothController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = Cloth::edit($id);
+        $date = ['title' => 'Переименование продукта', 'edit' => $edit];
+        return view('cloth/edit', $date);
     }
 
     /**
@@ -74,9 +77,14 @@ class ClothController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCloth $request, $id)
     {
-        //
+        $picture = null;
+        if (!empty($request->picture)) {
+            $picture = $request->picture->store('picture/cloth', 'public');
+        }
+        Cloth::up($id, $picture, $request);
+        return redirect()->route('index');
     }
 
     /**
@@ -87,6 +95,13 @@ class ClothController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cloth::destr($id);
+        return redirect()->route('index');
     }
+    
+    public function delPicture($id)
+    {
+        Cloth::delPicture($id);
+        return back();
+    }    
 }

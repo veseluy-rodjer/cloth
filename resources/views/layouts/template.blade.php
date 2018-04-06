@@ -57,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="menu"><img src="{{ asset('images/menu.png') }}" alt=""> </span>
 					<ul class="icon1 sub-icon1">
 						<li  ><a href="{{ route('index') }}" >Home</a></li>
-						<li><a href="{{ route('product.index') }}" > Products</a></li>	
+						<li><a href="{{ route('cloth.index') }}" > Products</a></li>	
 						<li><a href="#"><i></i></a>
 						<ul class="sub-icon1 list">
 						  <h3>Recently added items(2)</h3>

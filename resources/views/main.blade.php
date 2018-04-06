@@ -40,29 +40,41 @@
 		<div class="container">
 		
 @foreach($listing as $i)		
-			<div class="content-grid">
-				<h3 class="future">{{ $i->category }}<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;Добавить</a>
+			<div class="content-product">
+				<h3 class="future-men">{{ $i->category }}<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;&#160;Добавить продукт</a>
+				</h3>				
 				
-				</h3>
-
-    @foreach($i->clothes as $y)
-    
-      <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-        <img src="{{ asset($y->picture) }}" class="img-responsive" />
-        <h3>{{ $y->name }}</h3>
-        <p>{{ $y->description }} </p>
-{{-- @can('before', App\Models\MainModel::class) --}}        
-        <a href="{{ route('edit', [$i->id]) }}"><input type="submit" value="Редактировать"></a>
-<form action="{{ route('destroy', [$i->id]) }}" method="post">
+    @foreach($i->clothes as $y)					
+				<div class="col-md-4 col-d">
+				<div class="men-grid in-men">
+					<a href="{{ route('single.index', [$y->id]) }}"><img class="img-responsive" src="{{ asset($y->picture) }}" alt=""></a>
+						<div class="value-in">
+							<p>{{ $y->name }}</p>
+							<span>{{ $y->price }}&#160;грн</span>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="down-top ">
+						
+							 <select  class="drop-down">
+								<option value="" class="size" value="">SIZE</option>
+								<option value="1">Large</option>
+								<option value="2">Medium</option>
+								<option value="3">Small</option>
+							 </select>
+						</div>	
+					</div>
+<a href="{{ route('cloth.edit', [$y->id]) }}"><input type="submit" value="Редактировать"></a>
+<form action="{{ route('cloth.destroy', [$y->id]) }}" method="post">
 {{ csrf_field() }}
 {{ method_field('DELETE') }}
 <p><input type="submit" value="Удалить"></p>
-</form>
-{{-- @endcan --}}        
-      </div>
-    @endforeach
+</form>					
+				</div>				
+    @endforeach       
+     				
+				<div class="clearfix"> </div>
 			</div>
-@endforeach
+@endforeach			
 
 		</div>
 		<!---->

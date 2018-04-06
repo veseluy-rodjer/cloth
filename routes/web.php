@@ -11,13 +11,17 @@
 |
 */
 
+Route::resource('/single', 'SingleController')->except('index');
+
+Route::get('/single/{single}', 'SingleController@index')->name('single.index');
+
+Route::delete('/cloth/delPicture/{cloth}', 'ClothController@delPicture')->name('cloth.delPicture');
+
 Route::get('/cloth/create/{cloth}', 'ClothController@create')->name('cloth.create');
 
 Route::post('/cloth/store/{cloth}', 'ClothController@store')->name('cloth.store');
 
 Route::resource('/cloth', 'ClothController')->except('create', 'store');
-
-Route::resource('/product', 'ProductController');
 
 Auth::routes();
 
