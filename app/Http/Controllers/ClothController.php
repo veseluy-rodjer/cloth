@@ -54,7 +54,9 @@ class ClothController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Cloth::edit($id);
+        $date = ['title' => 'Просмотр продукта', 'item' => $item];
+        return view('single', $date);
     }
 
     /**

@@ -47,7 +47,7 @@
     @foreach($i->clothes as $y)					
 				<div class="col-md-4 col-d">
 				<div class="men-grid in-men">
-					<a href="{{ route('single.index', [$y->id]) }}"><img class="img-responsive" src="{{ asset($y->picture) }}" alt=""></a>
+					<a href="{{ route('cloth.show', [$y->id]) }}"><img class="img-responsive" src="{{ asset($y->picture) }}" alt=""></a>
 						<div class="value-in">
 							<p>{{ $y->name }}</p>
 							<span>{{ $y->price }}&#160;грн</span>
