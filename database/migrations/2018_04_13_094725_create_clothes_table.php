@@ -20,6 +20,11 @@ class CreateClothesTable extends Migration
             $table->char('name', 255);
             $table->char('description', 255);
             $table->float('price', 8, 2);
+            $table->integer('s')->nullable();
+            $table->integer('m')->nullable();
+            $table->integer('l')->nullable();
+            $table->integer('xl')->nullable();
+            $table->integer('xxl')->nullable();
             $table->integer('category_id');            
         });
     }
