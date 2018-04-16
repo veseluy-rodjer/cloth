@@ -31,6 +31,12 @@
 <p>Наименование: <textarea rows="3" cols="45" wrap="soft" name="name" required>{{ $edit->name }}</textarea></p>
 <p>Описание: <textarea rows="10" cols="45" wrap="soft" name="description" required>{{ $edit->description }}</textarea></p>
 <p>Цена: <input type="number" name="price" min="0" step="0.01" value="{{ $edit->price }}" required></p>
+<p>Количество: </p>
+<p>S: <input type="number" name="s" min="0" step="1"  value="{{ $edit->s }}"></p>
+<p>M: <input type="number" name="m" min="0" step="1"  value="{{ $edit->m }}"></p>
+<p>L: <input type="number" name="l" min="0" step="1"  value="{{ $edit->l }}"></p>
+<p>XL: <input type="number" name="xl" min="0" step="1"  value="{{ $edit->xl }}"></p>
+<p>XXL: <input type="number" name="xxl" min="0" step="1"  value="{{ $edit->xxl }}"></p>
 <p><input type="submit"></p>
 </form>
 

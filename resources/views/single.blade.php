@@ -30,14 +30,16 @@
 						<h4>Available Options :</h4>
 						<ul>
 						
-<form enctype="multipart/form-data" action="{{--  route('cloth.store', [$id])  --}}" method="post">
-{{ csrf_field() }}						
+<form enctype="multipart/form-data" action="{{ route('cart.update', [$item->id]) }}" method="post">
+{{ csrf_field() }}
+{{ method_field('PATCH') }}						
 							<li>Size:
-								<select name="size">
-									<option>L</option>
-									<option>XL</option>
+								<select name="size">									
 									<option>S</option>
 									<option>M</option>
+									<option>L</option>
+									<option>XL</option>
+									<option>XXL</option>
 								</select>
 							</li>
 							<li>

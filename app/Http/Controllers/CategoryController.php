@@ -13,6 +13,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('checkId')->except('index', 'create', 'store', 'update');
+    }
+
     public function index()
     {
         $id=null;
@@ -35,6 +40,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('before', Category::class);
+        session(['oldUrl' => $_SERVER['HTTP_REFERER']]);
         $date = ['title' => 'Добавление категории'];
         return view('category/create', $date);
 
@@ -48,8 +55,9 @@ class CategoryController extends Controller
      */
     public function store(StoreCategory $request)
     {
+        $this->authorize('before', Category::class);
         Category::store($request->category);
-        return redirect()->route('index');
+        return redirect(session('oldUrl'));
     }
 
     /**
@@ -71,6 +79,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('before', Category::class);
+        session(['oldUrl' => $_SERVER['HTTP_REFERER']]);
         $edit = Category::edit($id);
         $date = ['title' => 'Переименование категории', 'edit' => $edit];
         return view('category/edit', $date);
@@ -85,8 +95,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('before', Category::class);
         Category::up($request->category, $id);
-        return redirect()->route('index');
+        return redirect(session('oldUrl'));
     }
 
     /**
@@ -97,7 +108,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('before', Category::class);
         Category::destr($id);
-        return redirect()->route('index');
+        return back();
     }
 }

@@ -15,14 +15,19 @@ class Cloth extends Model
         //
     }
 
-    public function scopeStore($quest, $id, $picture, $name, $description, $price)
+    public function scopeStore($quest, $id, $picture, $request)
     {
         $category = Category::find($id);
         $add = new Cloth;
         $add->picture = $picture;
-        $add->name = $name;
-        $add->description = $description;
-        $add->price = $price;
+        $add->name = $request->name;
+        $add->description = $request->description;
+        $add->price = $request->price;
+        $add->s = $request->s;
+        $add->m = $request->m;
+        $add->l = $request->l;
+        $add->xl = $request->xl;
+        $add->xxl = $request->xxl;
         $category->clothes()->save($add);
     }
     
@@ -42,7 +47,12 @@ class Cloth extends Model
         }
         $up->name = $request->name;
         $up->description = $request->description;
-        $up->price = $request->price;        
+        $up->price = $request->price;
+        $up->s = $request->s;
+        $up->m = $request->m;
+        $up->l = $request->l;
+        $up->xl = $request->xl;
+        $up->xxl = $request->xxl;        
         $up->save();        
     }    
 

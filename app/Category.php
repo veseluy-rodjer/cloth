@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Category extends Model
 {
@@ -39,7 +40,13 @@ class Category extends Model
 
     public function scopeDestr($quest, $id)
     {
-        Category::find($id)->clothes()->delete();
+        $destroy = Category::find($id)->clothes;
+        foreach($destroy as $i) {
+            if (!empty($i->picture)) {
+                Storage::disk('public')->delete($i->picture);
+            }
+            $i->delete();
+        }
         Category::destroy($id);
     }
 

@@ -27,6 +27,13 @@ class StoreCloth extends FormRequest
             'picture' => 'file|image|max:9024',
             'name' => 'required|string',
             'description' => 'required|string',
+            'price' => 'required|numeric',
+            's' => 'integer',
+            'm' => 'integer',
+            'l' => 'integer',
+            'xl' => 'integer',
+            'xxl' => 'integer',
+            
         ];
     }
     
@@ -40,6 +47,13 @@ class StoreCloth extends FormRequest
             'name.string'  => 'Поле должно быть строкой',
             'description.required' => 'Поле нужно заполнить',
             'description.string'  => 'Поле должно быть строкой',
+            'price.required'  => 'Поле нужно заполнить',
+            'price.numeric'  => 'Поле должно быть числом',
+            's.integer'  => 'Поле должно быть целым числом',
+            'm.integer'  => 'Поле должно быть целым числом',
+            'l.integer'  => 'Поле должно быть целым числом',
+            'xl.integer'  => 'Поле должно быть целым числом',
+            'xxl.integer'  => 'Поле должно быть целым числом',
         ];
     }    
 }

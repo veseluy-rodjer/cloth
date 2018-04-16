@@ -8,10 +8,27 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Админка</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+    table {
+    	width: 100%; /* Ширина таблицы */
+        background: white; /* Цвет фона таблицы */
+        color: black; /* Цвет текста */
+        border-spacing: 1px; /* Расстояние между ячейками */
+        : center;
+    }
+    th {
+        background: LightSkyBlue; /* Цвет фона ячеек */
+        padding: 5px; /* Поля вокруг текста */
+    }
+    td {
+        background: white; /* Цвет фона ячеек */
+        padding: 5px; /* Поля вокруг текста */
+    }
+    </style>    
 </head>
 <body>
     <div id="app">
@@ -29,7 +46,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ 'На главную' }}
                     </a>
                 </div>
 

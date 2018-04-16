@@ -19,20 +19,28 @@
 @foreach($listing as $i)
                         <br>
 						<a href="{{ route('indexCategory', [$i->id]) }}">{{ $i->category }}</a>
+						
+@can('before', App\Category::class)						
 						<a href="{{ route('edit', [$i->id]) }}" >&#160;Переименовать категорию</a>
 						<form action="{{ route('destroy', [$i->id]) }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <p><input type="submit" value="Удалить категорию"></p>
                         </form>
+@endcan
+                        
 @endforeach
                     </h3>
 
 					<div class="clearfix"> </div>
 					</div>
 				<a  href="{{ route('index') }}" class="product-in hvr-shutter-in-horizontal">Все категории</a>
+				
+@can('before', App\Category::class)
 				<div class="clearfix"> </div>
 				<p style="text-align:right; font-weight:700"><br><a href="{{ route('create') }}" >Добавить категорию</a></p>
+@endcan
+				
 				</div>
 			</div>
 		</div>
@@ -41,7 +49,12 @@
 		
 @foreach($listing as $i)		
 			<div class="content-product">
-				<h3 class="future-men">{{ $i->category }}<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;&#160;Добавить продукт</a>
+				<h3 class="future-men">{{ $i->category }}
+
+@can('before', App\Cloth::class)				
+				<a href="{{ route('cloth.create', [$i->id]) }}" >&#160;&#160;Добавить продукт</a>
+@endcan
+				
 				</h3>				
 				
     @foreach($i->clothes as $y)					
@@ -63,12 +76,16 @@
 							 </select>
 						</div>	
 					</div>
+					
+@can('before', App\Cloth::class)					
 <a href="{{ route('cloth.edit', [$y->id]) }}"><input type="submit" value="Редактировать"></a>
 <form action="{{ route('cloth.destroy', [$y->id]) }}" method="post">
 {{ csrf_field() }}
 {{ method_field('DELETE') }}
 <p><input type="submit" value="Удалить"></p>
-</form>					
+</form>
+@endcan
+				
 				</div>				
     @endforeach       
      				

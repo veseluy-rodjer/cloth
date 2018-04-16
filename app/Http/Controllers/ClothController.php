@@ -14,6 +14,11 @@ class ClothController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('checkId')->except('index', 'store',  'update');
+    }
+
     public function index()
     {
         //
@@ -26,6 +31,8 @@ class ClothController extends Controller
      */
     public function create($id)
     {
+        $this->authorize('before', Cloth::class);
+        session(['oldUrl' => $_SERVER['HTTP_REFERER']]);
         $date = ['title' => 'Добавление одежды', 'id' => $id];
         return view('cloth/create', $date);
     }
@@ -38,12 +45,13 @@ class ClothController extends Controller
      */
     public function store(StoreCloth $request, $id)
     {
+        $this->authorize('before', Cloth::class);
         $picture = null;
         if (!empty($request->picture)) {
             $picture = $request->picture->store('picture/cloth', 'public');
         }
-        Cloth::store($id, $picture, $request->name, $request->description, $request->price);
-        return redirect()->route('index'); 
+        Cloth::store($id, $picture, $request);
+        return redirect(session('oldUrl')); 
     }
 
     /**
@@ -67,6 +75,10 @@ class ClothController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('before', Cloth::class);
+        if (session()->exists('oldUrlEdit') === false) {
+            session(['oldUrlEdit' => $_SERVER['HTTP_REFERER']]);
+        }
         $edit = Cloth::edit($id);
         $date = ['title' => 'Переименование продукта', 'edit' => $edit];
         return view('cloth/edit', $date);
@@ -81,12 +93,15 @@ class ClothController extends Controller
      */
     public function update(StoreCloth $request, $id)
     {
+        $this->authorize('before', Cloth::class);
         $picture = null;
         if (!empty($request->picture)) {
             $picture = $request->picture->store('picture/cloth', 'public');
         }
         Cloth::up($id, $picture, $request);
-        return redirect()->route('index');
+        $oldUrlEdit = session('oldUrlEdit');
+        session()->forget('oldUrlEdit');
+        return redirect($oldUrlEdit);
     }
 
     /**
@@ -97,12 +112,14 @@ class ClothController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('before', Cloth::class);
         Cloth::destr($id);
-        return redirect()->route('index');
+        return back();
     }
     
     public function delPicture($id)
     {
+        $this->authorize('before', Cloth::class);
         Cloth::delPicture($id);
         return back();
     }    

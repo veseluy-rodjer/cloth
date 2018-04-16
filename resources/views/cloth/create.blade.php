@@ -24,6 +24,12 @@
 <p>Наименование: <textarea rows="3" cols="45" wrap="soft" name="name" required></textarea></p>
 <p>Описание: <textarea rows="10" cols="45" wrap="soft" name="description" required></textarea></p>
 <p>Цена: <input type="number" name="price" min="0" step="0.01" required></p>
+<p>Количество: </p>
+<p>S: <input type="number" name="s" min="0" step="1"  value="0"></p>
+<p>M: <input type="number" name="m" min="0" step="1"  value="0"></p>
+<p>L: <input type="number" name="l" min="0" step="1"  value="0"></p>
+<p>XL: <input type="number" name="xl" min="0" step="1"  value="0"></p>
+<p>XXL: <input type="number" name="xxl" min="0" step="1"  value="0"></p>
 <p><input type="submit"></p>
 </form>
 
