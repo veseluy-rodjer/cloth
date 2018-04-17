@@ -9,16 +9,16 @@ use App\Http\Requests\StoreCloth;
 
 class ClothController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkId')->except('index', 'store',  'update');
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('checkId')->except('index', 'store',  'update');
-    }
-
     public function index()
     {
         //
@@ -62,6 +62,7 @@ class ClothController extends Controller
      */
     public function show($id)
     {
+        session(['oldUrl' => $_SERVER['HTTP_REFERER']]);
         $item = Cloth::edit($id);
         $date = ['title' => 'Просмотр продукта', 'item' => $item];
         return view('single', $date);

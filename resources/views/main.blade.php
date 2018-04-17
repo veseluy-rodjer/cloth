@@ -16,7 +16,7 @@
 					<div class="content-top-grid">
 					<h3>
 					
-@foreach($listing as $i)
+@foreach ($listing as $i)
                         <br>
 						<a href="{{ route('indexCategory', [$i->id]) }}">{{ $i->category }}</a>
 						
@@ -47,7 +47,7 @@
 		<!---->
 		<div class="container">
 		
-@foreach($listing as $i)		
+@foreach ($listing as $i)		
 			<div class="content-product">
 				<h3 class="future-men">{{ $i->category }}
 
@@ -57,7 +57,7 @@
 				
 				</h3>				
 				
-    @foreach($i->clothes as $y)					
+    @foreach ($i->clothes as $y)					
 				<div class="col-md-4 col-d">
 				<div class="men-grid in-men">
 					<a href="{{ route('cloth.show', [$y->id]) }}"><img class="img-responsive" src="{{ asset($y->picture) }}" alt=""></a>

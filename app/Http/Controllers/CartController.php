@@ -8,6 +8,11 @@ use App\Cloth;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkId')->except('index', 'create', 'store');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $date = ['title' => 'Карта заказа'];
+        return view('cart', $date);
     }
 
     /**
@@ -68,14 +74,13 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBooking $request, $id)
     {
         $item = Cloth::edit($id);
-        if (session()->exists('cart') === false) {
-            session(['cart' => []]);
-        }
-        session()->push('cart', $item);
-        return response(session('cart'));
+        session()->push('cart.cloth', $item);
+        session()->push('cart.size', $request->size);
+        session()->push('cart.number', $request->number);
+        return redirect(session('oldUrl'));
     }
 
     public function booking(StoreBooking $request, $id)
@@ -101,8 +106,15 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($i)
     {
-        //
+        session()->forget('cart.cloth.' . $i);
+        session()->forget('cart.size.' . $i);
+        session()->forget('cart.number.' . $i);
+        $arrayCloth = array_values(session('cart.cloth'));
+        $arraySize = array_values(session('cart.size'));
+        $arrayNumber = array_values(session('cart.number'));
+        session(['cart.cloth' => $arrayCloth, 'cart.size' => $arraySize, 'cart.number' => $arrayNumber]);
+        return back();
     }
 }

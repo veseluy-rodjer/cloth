@@ -16,11 +16,14 @@ class CheckId
     public function handle($request, Closure $next)
    {
         if (isset($request->cloth) && false == is_numeric($request->cloth)) {
-            return response('Это не число!' . $request->cloth);
+            return response('Это не число - ' . $request->cloth);
         }
         if (isset($request->category) && false == is_numeric($request->category)) {
-            return response('Это не число!' . $request->category);
+            return response('Это не число - ' . $request->category);
         }
+        if (isset($request->cart) && false == is_numeric($request->cart)) {
+            return response('Это не число - ' . $request->cart);
+        }        
         return $next($request);
     }
 }

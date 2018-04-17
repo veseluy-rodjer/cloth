@@ -60,32 +60,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="{{ route('cloth.index') }}" > Products</a></li>	
 						<li><a href="#"><i></i></a>
 						<ul class="sub-icon1 list">
-						  <h3>Recently added items(2)</h3>
+						  <h3>Выбрано позиций({{ count(session('cart.cloth')) }})</h3>
+
+@if (!empty(session('cart.cloth')))			  
+@foreach (range(0, count(session('cart.cloth')) - 1) as $i)
 						  <div class="shopping_cart">
 							  <div class="cart_box">
 							   	 <div class="message">
-							   	     <div class="alert-close"> </div> 
-										<div class="list_img"><img src="{{ asset('images/15.jpg') }}" class="img-responsive" alt=""></div>
-										<div class="list_desc"><h4><a href="#">velit esse molestie</a></h4>
-										<p>Aliquam dignissim porttitor tortor </p>
-										<a href="#" class="offer">1 offer applied</a>
-										</div>
-		                              <div class="clearfix"></div>
-	                              </div>
-	                            </div>
-	                           <div class="cart_box">
-							   	 <div class="message1">
-							   	     <div class="alert-close1"> </div> 
-										<div class="list_img"><img src="{{ asset('images/16.jpg') }}" class="img-responsive" alt=""></div>
-										<div class="list_desc"><h4><a href="#">velit esse molestie</a></h4>
-										<p>Aliquam dignissim porttitor tortor </p>
-										<a href="#" class="offer">1 offer applied</a>
+										<div class="list_img"><img src="{{ asset(session('cart.cloth.' . $i)->picture) }}" class="img-responsive" alt=""></div>
+										<div class="list_desc"><h4><a href="#">{{ session('cart.cloth.' . $i)->name }}</a></h4>
+										<p>{{ session('cart.cloth.' . $i)->description }} </p>
+										<p>Размер {{ session('cart.size.' . $i) }} </p>
+										<a href="#" class="offer">Количество {{ session('cart.number.' . $i) }}</a>
+                						<form action="{{ route('cart.destroy', [$i]) }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <p><input type="submit" value="Удалить"></p>
+                                        </form>										
 										</div>
 		                              <div class="clearfix"></div>
 	                              </div>
 	                            </div>
 	                        </div>
-							  <div class="check_button"><a href="{{-- {{ route('cart.index') }}  --}}">View Cart</a></div>
+@endforeach
+@endif
+	                        
+							  <div class="check_button"><a href="{{ route('cart.index') }}">View Cart</a></div>
 					      <div class="clearfix"></div>
 						</ul>
 					</li>
