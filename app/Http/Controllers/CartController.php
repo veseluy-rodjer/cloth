@@ -83,12 +83,16 @@ class CartController extends Controller
         return redirect(session('oldUrl'));
     }
 
-    public function booking(StoreBooking $request, $id)
+    public function booking(Request $request)
     {
-        $item = Cloth::edit($id);
         $subject = 'Заказ';
-        $message = 'Id: ' . $id . 'Наименование: ' . $item->name . 'Размер: ' . $request->size . 'Количество: ' . $request->number;
-        $message = wordwrap($message, 70, "\r\n");
+        $message = [];
+        if (!empty(session('cart.cloth'))) {
+            foreach (range(0, count(session('cart.cloth')) - 1) as $i) {
+                $message[] = wordwrap('Наименование: ' . session('cart.cloth.' . $i)->name . 'Размер: ' . session('cart.size.' . $i) . 'Количество: ' . session('cart.number.' . $i), 70, "\r\n");
+            }
+        }
+        $message = implode($message);
         $headers = 'From: nikolay@nikolay.kl.com.ua' . "\r\n";
         if (mail('mukataev@gmail.com', $subject, $message, $headers)) {
             $report = 'Ваше письмо успешно отправлено';

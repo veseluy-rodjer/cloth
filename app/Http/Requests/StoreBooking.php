@@ -24,6 +24,9 @@ class StoreBooking extends FormRequest
     public function rules()
     {
         return [
+            if (isset('tel') {
+                'tel' => 'regex:|[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}|';
+            }
             'size' => 'required|string',
             'number' => 'required|integer',
         ];
@@ -36,6 +39,7 @@ class StoreBooking extends FormRequest
             'size.string'  => 'Поле должно быть строкой',
             'number.required'  => 'Поле нужно заполнить',
             'number.integer'  => 'Поле должно быть целым числом',
+            'tel.regex'  => 'Введите номер телефона в указанном формате',
         ];
     }
 }

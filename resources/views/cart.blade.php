@@ -7,54 +7,43 @@
 		<!---->
 		<div class="container">
 		<div class="check-out">
-		<h2>Checkout</h2>
+		<h2>Ваши покупки</h2>
     	    <table >
 		  <tr>
-			<th>ITEM</th>
-			<th>QTY</th>		
-			<th>PRICES</th>
-			<th>DELIVERY DETAILS</th>
-			<th>SUBTOTAL</th>
+			<th>Продукт</th>
+			<th>Размер</th>		
+			<th>Цена</th>
+			<th>Количество</th>
+			<th>Сумма</th>
 		  </tr>
+		  
+@if (!empty(session('cart.cloth')))			  
+@foreach (range(0, count(session('cart.cloth')) - 1) as $i)		  
 		  <tr>
-			<td class="ring-in"><a href="single.html" class="at-in"><img src="{{ asset('images/17.jpg') }}" class="img-responsive" alt=""></a>
+			<td class="ring-in"><a style="width: 20%;" href="single.html" class="at-in"><img src="{{ asset(session('cart.cloth.' . $i)->picture) }}" class="img-responsive" alt=""></a>
 			<div class="sed">
-				<h5>Sed ut perspiciatis unde</h5>
-				<p>(At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas) </p>
+				<h5>{{ session('cart.cloth.' . $i)->name }}</h5>
+				<p>{{ session('cart.cloth.' . $i)->description }} </p>
 			
 			</div>
 			<div class="clearfix"> </div></td>
-			<td class="check"><input type="text" value="1" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"></td>		
-			<td>$100.00</td>
-			<td>FREE SHIPPING</td>
-			<td>$100.00</td>
+			<td class="check" style="text-align: center">{{ session('cart.size.' . $i) }}</td>		
+			<td style="text-align: center">{{ session('cart.cloth.' . $i)->price }} грн.</td>
+			<td style="text-align: center">{{ session('cart.number.' . $i) }}</td>
+			<td style="text-align: center">{{ session('cart.cloth.' . $i)->price * session('cart.number.' . $i) }} грн.</td>
 		  </tr>
-		  <tr>
-		  <td class="ring-in"><a href="single.html" class="at-in"><img src="{{ asset('images/16.jpg') }}" class="img-responsive" alt=""></a>
-			<div class="sed">
-				<h5>Sed ut perspiciatis unde</h5>
-				<p>(At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas) </p>
-			</div>
-			<div class="clearfix"> </div></td>
-			<td class="check"><input type="text" value="1" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"></td>		
-			<td>$200.00</td>
-			<td>FREE SHIPPING</td>
-			<td>$200.00</td>
-		  </tr>
-		  <tr>
-		  <td class="ring-in"><a href="single.html" class="at-in"><img src="{{ asset('images/15.jpg') }}" class="img-responsive" alt=""></a>
-			<div class="sed">
-				<h5>Sed ut perspiciatis unde</h5>
-				<p>(At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas) </p>
-			</div>
-			<div class="clearfix"> </div></td>
-			<td class="check"><input type="text" value="1" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}"></td>		
-			<td>$150.00</td>
-			<td>FREE SHIPPING</td>
-			<td>$150.00</td>
-		  </tr>
+@endforeach
+@endif
+
 	</table>
-	<a href="#" class=" hvr-shutter-in-horizontal">PROCEED TO BUY</a>
+	
+<form action="{{ route('cart.booking') }}" method="post">
+{{ csrf_field() }}
+<p>Укажите телефон для обратной связи в таком формате: <input type="tel" name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" placeholder="066-111-11-11"></p>
+<br>
+<p style="text-align: center"><input class=" hvr-shutter-in-horizontal" type="submit" value="Заказать"></p>
+</form>	
+	
 	<div class="clearfix"> </div>
     	</div>
 </div>
