@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBooking extends FormRequest
+class StoreTel extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,14 @@ class StoreBooking extends FormRequest
     public function rules()
     {
         return [
-            'size' => 'required|string',
-            'number' => 'required|integer',
+            'tel' => 'regex:{[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}}',
         ];
     }
     
     public function messages()
     {
         return [
-            'size.required' => 'Поле нужно заполнить',
-            'size.string'  => 'Поле должно быть строкой',
-            'number.required'  => 'Поле нужно заполнить',
-            'number.integer'  => 'Поле должно быть целым числом',
+            'tel.regex'  => 'Введите номер телефона в указанном формате',
         ];
-    }
+    }    
 }

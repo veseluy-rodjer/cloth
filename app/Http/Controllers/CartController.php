@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreBooking;
+use App\Http\Requests\StoreTel;
 use App\Cloth;
 
 class CartController extends Controller
@@ -83,13 +84,13 @@ class CartController extends Controller
         return redirect(session('oldUrl'));
     }
 
-    public function booking(Request $request)
+    public function booking(StoreTel $request)
     {
         $subject = 'Заказ';
         $message = [];
         if (!empty(session('cart.cloth'))) {
             foreach (range(0, count(session('cart.cloth')) - 1) as $i) {
-                $message[] = wordwrap('Наименование: ' . session('cart.cloth.' . $i)->name . 'Размер: ' . session('cart.size.' . $i) . 'Количество: ' . session('cart.number.' . $i), 70, "\r\n");
+                $message[] = wordwrap('Наименование: ' . session('cart.cloth.' . $i)->name . 'Размер: ' . session('cart.size.' . $i) . 'Количество: ' . session('cart.number.' . $i) . 'Телефон: ' . $request->tel, 70, "\r\n");
             }
         }
         $message = implode($message);
