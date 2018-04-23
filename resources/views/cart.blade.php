@@ -39,7 +39,8 @@
 	
 <form action="{{ route('cart.booking') }}" method="post">
 {{ csrf_field() }}
-<p>Укажите телефон для обратной связи в таком формате: <input type="tel" name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" placeholder="066-111-11-11"></p>
+<p>Ваше имя: <input type="text" name="name" required></p>
+<p>Укажите телефон для обратной связи в таком формате: <input type="tel" name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" placeholder="066-111-11-11" required></p>
 <br>
 <p style="text-align: center"><input class=" hvr-shutter-in-horizontal" type="submit" value="Заказать"></p>
 </form>	

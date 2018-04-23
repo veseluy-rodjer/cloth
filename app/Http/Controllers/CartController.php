@@ -90,18 +90,20 @@ class CartController extends Controller
         $message = [];
         if (!empty(session('cart.cloth'))) {
             foreach (range(0, count(session('cart.cloth')) - 1) as $i) {
-                $message[] = wordwrap('Наименование: ' . session('cart.cloth.' . $i)->name . 'Размер: ' . session('cart.size.' . $i) . 'Количество: ' . session('cart.number.' . $i) . 'Телефон: ' . $request->tel, 70, "\r\n");
+                $message[] = wordwrap("Наименование: " . session('cart.cloth.' . $i)->name . ";\r\nРазмер: " . session('cart.size.' . $i) . ";\r\nКоличество: " . session('cart.number.' . $i) . ";\r\n", 70, "\r\n");
             }
+            $message[] = "\r\nИмя: " . $request->name;
+            $message[] = "\r\nТелефон: " . $request->tel;
         }
         $message = implode($message);
-        $headers = 'From: nikolay@nikolay.kl.com.ua' . "\r\n";
+        $headers = 'From: nikolay@ukrainian-clothes.kl.com.ua' . "\r\n";
         if (mail('mukataev@gmail.com', $subject, $message, $headers)) {
-            $report = 'Ваше письмо успешно отправлено';
+            $report = 'Ваше письмо успешно отправлено!';
         }
         else {
             $report = 'Неудалось отправить письмо, что-то не так...';
         }        
-        $date = ['title' => 'Отчет о доставке', 'report' => $report];
+        $date = ['title' => 'Отчет о доставке', 'report' => $report, 'message' => $message];
         return view('report', $date);        
     }
 

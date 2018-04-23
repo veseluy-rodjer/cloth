@@ -6,7 +6,9 @@
 		</div>
 		<!---->
 			<div class="container">
-{{ $report }}
+			<br>
+<p style="text-align:center; font-weight:700">{{ $report }}</p>
 			</div>
+			<br>
 
 @endsection
