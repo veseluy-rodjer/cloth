@@ -54,7 +54,7 @@ class Cloth extends Model
         $up->xl = $request->xl;
         $up->xxl = $request->xxl;        
         $up->save();        
-    }    
+    }
 
     public function scopeDestr($quest, $id)
     {

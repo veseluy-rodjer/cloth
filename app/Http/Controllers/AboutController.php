@@ -45,7 +45,13 @@ class AboutController extends Controller
      */
     public function store(StoreAbout $request)
     {
-        //
+        $this->authorize('before', About::class);
+        $picture = null;
+        if (!empty($request->picture)) {
+            $picture = $request->picture->store('picture/about', 'public');
+        }
+        About::store($picture, $request);
+        return redirect()->route('about.index');
     }
 
     /**
@@ -67,7 +73,10 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->authorize('before', About::class);
+        $edit = About::edit($id);
+        $date = ['title' => 'О нас', 'edit' => $edit];
+        return view('about/edit', $date);
     }
 
     /**
@@ -77,9 +86,15 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreAbout $request, $id)
     {
-        //
+        $this->authorize('before', About::class);
+        $picture = null;
+        if (!empty($request->picture)) {
+            $picture = $request->picture->store('picture/about', 'public');
+        }
+        About::up($id, $picture, $request);
+        return redirect()->route('about.index');
     }
 
     /**
@@ -90,6 +105,15 @@ class AboutController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('before', About::class);
+        About::destr($id);
+        return back();
+    }
+
+    public function delPicture($id)
+    {
+        $this->authorize('before', About::class);
+        About::delPicture($id);
+        return back();
     }
 }

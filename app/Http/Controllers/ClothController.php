@@ -123,5 +123,5 @@ class ClothController extends Controller
         $this->authorize('before', Cloth::class);
         Cloth::delPicture($id);
         return back();
-    }    
+    }
 }

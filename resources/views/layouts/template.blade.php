@@ -50,13 +50,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="header">
 		<div class="container">
 		<div class="header-top">		
-			<div class="logo">
-				<a href="{{ route('index') }}"><img src="{{ asset('images/logo.png') }}" alt=""></a>
-			</div>
 				<div class="top-nav">
 					<span class="menu"><img src="{{ asset('images/menu.png') }}" alt=""> </span>
 					<ul class="icon1 sub-icon1">
-						<li  ><a href="{{ route('home') }}" >Home</a></li>
+					    <li><a href="{{ route('index') }}">Главная</a></li>
+						<li><a href="{{ route('home') }}" >Home</a></li>
 						<li><a href="{{ route('about.index') }}" >О нас</a></li>
 						<li><a href="{{-- route('contact.index') --}}" >Контакты</a></li>	
 						<li><a href="#"><i></i></a>

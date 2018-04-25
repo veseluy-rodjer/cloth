@@ -10,6 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/fail', 'PayController@fail')->name('fail');
+
+Route::get('/success', 'PayController@success')->name('success');
+
+Route::get('/pay', 'PayController@pay')->name('pay');
+
+Route::delete('/about/delPicture/{about}', 'AboutController@delPicture')->name('about.delPicture');
+
 Route::resource('/about', 'AboutController');
 
 Route::delete('/cloth/delPicture/{cloth}', 'ClothController@delPicture')->name('cloth.delPicture');
