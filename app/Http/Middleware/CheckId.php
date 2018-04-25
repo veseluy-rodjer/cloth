@@ -23,7 +23,10 @@ class CheckId
         }
         if (isset($request->cart) && false == is_numeric($request->cart)) {
             return response('Это не число - ' . $request->cart);
-        }        
+        }
+        if (isset($request->about) && false == is_numeric($request->about)) {
+            return response('Это не число - ' . $request->about);
+        }
         return $next($request);
     }
 }

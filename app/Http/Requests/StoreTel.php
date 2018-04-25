@@ -24,6 +24,7 @@ class StoreTel extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required|string',
             'tel' => 'regex:{[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}}',
         ];
     }
@@ -31,6 +32,8 @@ class StoreTel extends FormRequest
     public function messages()
     {
         return [
+            'name.required' => 'Поле нужно заполнить',
+            'name.string'  => 'Поле должно быть строкой',        
             'tel.regex'  => 'Введите номер телефона в указанном формате',
         ];
     }    

@@ -51,23 +51,29 @@
 					</div>	
 				</div>
 				<div class="col-md-8 in-profile">
-				<h4> TEAM</h4>
-				<div class="team-left ">					
+				<h4>Наша команда))
+@can('before', App\About::class)      
+      <a href="{{ route('about.create') }}">&#160;Добавить</a>
+@endcan				
+				</h4>				
+				<div class="team-left ">
+				
+@foreach ($listing as $i)				
 					<div class=" team-top">
-					<a href="single.html"><img class="img-responsive" src="{{ asset('images/p1.jpg') }}" alt="" /></a>
-						<h6><a href="single.html">Duis autem</a></h6>
-						<p>Lorem ipsum dolor sit amet, consectetuer .</p>
+					<a href="single.html"><img class="img-responsive" src="{{ asset($i->picture) }}" alt="" /></a>
+						<h6>{{ $i->name }}</h6>
+						<p>{{ $i->description }}</p>
+@can('before', App\About::class)        
+<a href="{{ route('about.edit', [$i->id]) }}"><input type="submit" value="Редактировать"></a>
+<form action="{{ route('about.destroy', [$i->id]) }}" method="post">
+{{ csrf_field() }}
+{{ method_field('DELETE') }}
+<p><input type="submit" value="Удалить"></p>
+</form>
+@endcan 						
 					</div>
-					<div class=" team-top ">
-						<a href="single.html"><img class="img-responsive  " src="{{ asset('images/p2.jpg') }}" alt="" /></a>
-						<h6><a href="single.html">Duis autem</a></h6>
-						<p>Lorem ipsum dolor sit amet, consectetuer .</p>
-					</div>
-					<div class=" team-top">
-						<a href="single.html"><img class="img-responsive  " src="{{ asset('images/p4.jpg') }}" alt="" /></a>
-						<h6><a href="single.html">Duis autem</a></h6>
-						<p>Lorem ipsum dolor sit amet, consectetuer.</p>
-					</div>
+@endforeach					
+					
 				</div>
 			</div>
 			<div class="clearfix"> </div>

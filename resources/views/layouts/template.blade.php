@@ -57,7 +57,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span class="menu"><img src="{{ asset('images/menu.png') }}" alt=""> </span>
 					<ul class="icon1 sub-icon1">
 						<li  ><a href="{{ route('home') }}" >Home</a></li>
-						<li><a href="{{ route('cloth.index') }}" > Products</a></li>	
+						<li><a href="{{ route('about.index') }}" >О нас</a></li>
+						<li><a href="{{-- route('contact.index') --}}" >Контакты</a></li>	
 						<li><a href="#"><i></i></a>
 						<ul class="sub-icon1 list">
 						  <h3>Выбрано позиций({{ count(session('cart.cloth')) }})</h3>
@@ -106,25 +107,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 @yield('content')
 
 		<div class="footer">
-			<div class="footer-top">
-				<div class="container">
-				<a href="#" class="theme"><i> </i> “ E-commerce psd theme available ”</a>
-				</div>
-			</div>
+			<br>
 			<div class="footer-bottom">
 				<div class="container">
 				<div class="footer-bottom-at">
 					<div class="col-md-6 footer-grid">
-						<h3>Trekking</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<h3>Адрес склада:</h3>
+						<p>Украина, г. Николаев, ул. Пыхтунова 123</p>
 					</div>
 					<div class="col-md-6 footer-grid-in">
-					<ul class="footer-nav">
-						<li><a href="404.html" >credits </a>|</li>
-						<li><a href="{{--  {{ route('privacy.index') }} --}}" > Privacy</a>|</li>
-						<li><a href="{{-- {{ route('about.index') }} --}}" > about</a>|</li>
-						<li><a href="{{-- {{ route('contact.index') }} --}}" > contact</a></li>
-					</ul>
 					<p class="footer-class">Copyright © 2015 Trekking Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
 					</div>
 					<div class="clearfix"> </div>

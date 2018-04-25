@@ -57,13 +57,5 @@
 @endforeach			
 
 		</div>
-		<!---->
-		<div class="about-us">
-			<div class="container">
-			<h2>about us</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrudexercitation</p>
-			<i class="round"> </i>
-			</div>
-		</div>
 	</div>
 @endsection
