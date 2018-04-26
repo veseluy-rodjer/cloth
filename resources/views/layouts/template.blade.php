@@ -56,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					    <li><a href="{{ route('index') }}">Главная</a></li>
 						<li><a href="{{ route('home') }}" >Home</a></li>
 						<li><a href="{{ route('about.index') }}" >О нас</a></li>
-						<li><a href="{{-- route('contact.index') --}}" >Контакты</a></li>	
+						<li><a href="{{ route('contact.index') }}" >Контакты</a></li>	
 						<li><a href="#"><i></i></a>
 						<ul class="sub-icon1 list">
 						  <h3>Выбрано позиций({{ count(session('cart.cloth')) }})</h3>
@@ -136,8 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					</script>
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
-
 		</div>
+
 </body>
 </html>

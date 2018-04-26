@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTel extends FormRequest
+class StoreContact extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class StoreTel extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'surname' => 'required|string',
-            'tel' => 'regex:{^(\+)[0-9]{12}$}',
+            'email' => 'email',
+            'message' => 'required|string',
         ];
     }
     
@@ -35,9 +35,9 @@ class StoreTel extends FormRequest
         return [
             'name.required' => 'Поле нужно заполнить',
             'name.string'  => 'Поле должно быть строкой',
-            'surname.required' => 'Поле нужно заполнить',
-            'surname.string'  => 'Поле должно быть строкой',                    
-            'tel.regex'  => 'Введите номер телефона в указанном формате',
+            'email.email' => 'Поле должно быть эл. адресом',
+            'message.required'  => 'Поле нужно заполнить',
+            'message.string'  => 'Поле должно быть строкой',                    
         ];
-    }    
+    }
 }

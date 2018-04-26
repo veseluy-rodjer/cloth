@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreBooking;
 use App\Http\Requests\StoreTel;
 use App\Cloth;
+use App\Pay;
 
 class CartController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkId')->except('index', 'create', 'store');
+        $this->middleware('checkId')->only('update', 'destroy');
     }
 
     /**
@@ -92,7 +93,9 @@ class CartController extends Controller
             foreach (range(0, count(session('cart.cloth')) - 1) as $i) {
                 $message[] = wordwrap("Наименование: " . session('cart.cloth.' . $i)->name . ";\r\nРазмер: " . session('cart.size.' . $i) . ";\r\nКоличество: " . session('cart.number.' . $i) . ";\r\n", 70, "\r\n");
             }
+            $description = implode($message);
             $message[] = "\r\nИмя: " . $request->name;
+            $message[] = "\r\nФамилия: " . $request->surname;
             $message[] = "\r\nТелефон: " . $request->tel;
         }
         $message = implode($message);
@@ -102,8 +105,12 @@ class CartController extends Controller
         }
         else {
             $report = 'Неудалось отправить письмо, что-то не так...';
-        }        
-        $date = ['title' => 'Отчет о доставке', 'report' => $report, 'message' => $message];
+        }
+        $name = $request->name;
+        $surname = $request->surname;
+        $tel = $request->tel;
+        $id = Pay::store($name, $surname, $tel, $description);
+        $date = ['title' => 'Отчет о доставке', 'report' => $report, 'message' => $message, 'tel' => $tel, 'id' => $id];
         return view('report', $date);        
     }
 

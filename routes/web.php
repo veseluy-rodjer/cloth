@@ -10,11 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/contact', 'ContactController@index')->name('contact.index');
+
+Route::post('/contact', 'ContactController@store')->name('contact.store');
+
 Route::get('/fail', 'PayController@fail')->name('fail');
 
 Route::get('/success', 'PayController@success')->name('success');
-
-Route::get('/pay', 'PayController@pay')->name('pay');
 
 Route::delete('/about/delPicture/{about}', 'AboutController@delPicture')->name('about.delPicture');
 

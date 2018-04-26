@@ -9,9 +9,6 @@
 		<div class="contact">	
 			<h2>CONTACT</h2>		
 			<div class="contact-grids">
-				<div class="contact-map">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245795.5082910491!2d-47.93823615000001!3d-15.721762149999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3d18df9ae275%3A0x738470e469754a24!2sBras%C3%ADlia+-+Federal+District%2C+Brazil!5e0!3m2!1sen!2sin!4v1427775069163" ></iframe>
-				</div>
 				<div class="top-contact">
 					<div class=" col-md-3 contact-right">
 				     	<h3>Company Information</h3>
@@ -25,24 +22,28 @@
 				    </div>	
 					<div class="col-md-8 contact-form">
 							<h3>Contact me</h3>
-						<form>
-							<div class="contact-in">
-								<div class="name-in">
-									<span>Name:</span>
-									<input type="text" value="">
-								</div>
-								<div class="name-in">
-									<span>Email:</span>
-									<input type="text" value="">
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-								<div class="name-on">
-									<span>Message:</span>
-									<textarea> </textarea>
-								</div>
-								<input type="submit" value="Send">
-						</form>
+          
+          <form action="{{ route('contact.store') }}" method="post" role="form" class="contactForm">
+          {{ csrf_field() }}
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Ваш email" data-rule="email" data-msg="Please enter a valid email" />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Тема" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Сообщение"></textarea>
+              <div class="validation"></div>
+            </div>
+            <div class="text-center"><button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Отправить</button></div>
+          </form>
+          
 					</div>	
 					<div class="clearfix"> </div>
 				</div>	
