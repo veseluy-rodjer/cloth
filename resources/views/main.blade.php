@@ -3,9 +3,8 @@
 
 		<div class="banner">
 			<div class="container">	
-				<h1>Our clothing , your comfort</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
- magna aliqua.</p>
+				<h1>Наш одяг ваш комфорт</h1>
+				<p>Український національний одяг для всій сім'ї</p>
 	<a href="#content" class="scroll down"><img src="{{ asset('images/arr.png') }}" alt=""></a>
 			</div>
 		</div>

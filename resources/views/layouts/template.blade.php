@@ -53,13 +53,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="top-nav">
 					<span class="menu"><img src="{{ asset('images/menu.png') }}" alt=""> </span>
 					<ul class="icon1 sub-icon1">
-					    <li><a href="{{ route('index') }}">Главная</a></li>
-						<li><a href="{{ route('home') }}" >Home</a></li>
+					    <li><a href="{{ route('index') }}">Головна</a></li>
+@can('before', App\Cloth::class)					    
+						<li><a href="{{ route('home') }}" >Адмінка</a></li>
+@endcan						
 						<li><a href="{{ route('about.index') }}" >О нас</a></li>
-						<li><a href="{{ route('contact.index') }}" >Контакты</a></li>	
+						<li><a href="{{ route('contact.index') }}" >Контакти</a></li>	
 						<li><a href="#"><i></i></a>
 						<ul class="sub-icon1 list">
-						  <h3>Выбрано позиций({{ count(session('cart.cloth')) }})</h3>
+						  <h3>Обрано позицій({{ count(session('cart.cloth')) }})</h3>
 
 @if (!empty(session('cart.cloth')))			  
 @foreach (range(0, count(session('cart.cloth')) - 1) as $i)
@@ -69,12 +71,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="list_img"><img src="{{ asset(session('cart.cloth.' . $i)->picture) }}" class="img-responsive" alt=""></div>
 										<div class="list_desc"><h4><a href="#">{{ session('cart.cloth.' . $i)->name }}</a></h4>
 										<p>{{ session('cart.cloth.' . $i)->description }} </p>
-										<p>Размер {{ session('cart.size.' . $i) }} </p>
-										<a href="#" class="offer">Количество {{ session('cart.number.' . $i) }}</a>
+										<p>Розмір {{ session('cart.size.' . $i) }} </p>
+										<a href="#" class="offer">Кількість {{ session('cart.number.' . $i) }}</a>
                 						<form action="{{ route('cart.destroy', [$i]) }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <p><input type="submit" value="Удалить"></p>
+                                        <p><input type="submit" value="Видалити"></p>
                                         </form>										
 										</div>
 		                              <div class="clearfix"></div>
@@ -84,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 @endforeach
 @endif
 	                        
-							  <div class="check_button"><a href="{{ route('cart.index') }}">View Cart</a></div>
+							  <div class="check_button"><a href="{{ route('cart.index') }}">Перейти до корзини</a></div>
 					      <div class="clearfix"></div>
 						</ul>
 					</li>
@@ -110,8 +112,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="container">
 				<div class="footer-bottom-at">
 					<div class="col-md-6 footer-grid">
-						<h3>Адрес склада:</h3>
-						<p>Украина, г. Николаев, ул. Пыхтунова 123</p>
+						<h3>Адреса склада:</h3>
+						<p>Україна, м. Миколаїв, вул. Пихтунова 123</p>
 					</div>
 					<div class="col-md-6 footer-grid-in">
 					<p class="footer-class">Copyright © 2015 Trekking Template by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>

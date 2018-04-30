@@ -21,8 +21,8 @@ class ContactController extends Controller
         $subject = $request->subject;
         $message = $request->message;
         $message = wordwrap($message, 70, "\r\n");
-        $headers = 'From: nikolay@nikolay.kl.com.ua' . "\r\n";
-        if (mail('mukataev@gmail.com', $subject, $message, $headers, $email)) {
+        $headers = 'From: nikolay@ukrainian-clothes.kl.com.ua' . "\r\n" . $email . "\r\n";
+        if (mail('mukataev@gmail.com', $subject, $message, $headers)) {
             $report = 'Ваше письмо успешно отправлено';
         }
         else {
