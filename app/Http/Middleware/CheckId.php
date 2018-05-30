@@ -14,7 +14,7 @@ class CheckId
      * @return mixed
      */
     public function handle($request, Closure $next)
-   {
+    {
         if (isset($request->cloth) && false == is_numeric($request->cloth)) {
             return response('Это не число - ' . $request->cloth);
         }
